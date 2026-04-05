@@ -1,1 +1,84 @@
-/* footer.css — à construire */
+/* ══════════════════════════════════════════
+   footer.css — Section Footer / Contact
+   ══════════════════════════════════════════ */
+
+#footer {
+  align-items: center;
+  justify-content: center;
+  padding: 60px 7vw;
+  min-height: 40vh;
+  height: auto;
+  border-top: 1px solid rgba(106,179,216,0.15);
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  text-align: center;
+}
+
+/* ── Message ── */
+.footer-message {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-tagline {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.footer-sub {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
+
+/* ── Liens ── */
+.footer-links {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.footer-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover { color: var(--color-accent); }
+
+.footer-link svg {
+  width: 16px; height: 16px;
+  stroke: currentColor; fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.footer-divider {
+  width: 1px; height: 20px;
+  background: rgba(106,179,216,0.25);
+}
+
+/* ── Copyright ── */
+.footer-copy {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  opacity: 0.5;
+  letter-spacing: 0.08em;
+}
