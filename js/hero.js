@@ -1,4 +1,4 @@
 /**
  * hero.js — Section Hero
- * À construire
+ * À construire !
  */
