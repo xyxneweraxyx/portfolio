@@ -147,10 +147,11 @@
 .cv-modal-overlay.open { opacity: 1; pointer-events: all; }
 
 .cv-modal {
-  background: #fff; border-radius: 20px; padding: 32px;
-  max-width: 680px; width: 90vw;
+  background: #fff; border-radius: 20px; padding: 28px;
+  max-width: 600px; width: 90vw;
+  max-height: 82vh; overflow-y: auto;
   box-shadow: 0 32px 80px rgba(0,0,0,0.18);
-  display: flex; flex-direction: column; gap: 20px;
+  display: flex; flex-direction: column; gap: 16px;
   transform: translateY(20px) scale(0.97);
   transition: transform 0.3s ease;
 }
