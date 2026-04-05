@@ -1,0 +1,116 @@
+/* ══════════════════════════════════════════
+   base.css — Reset, variables, styles globaux
+   ══════════════════════════════════════════ */
+
+/* ── Variables ── */
+:root {
+  --font-display: 'DM Serif Display', serif;
+  --font-body:    'DM Sans', sans-serif;
+
+  --color-bg-from:  #daeef9;
+  --color-bg-to:    #d6ecf7;
+  --color-text:     #1a2a3a;
+  --color-muted:    #5a7a90;
+  --color-accent:   #6ab3d8;
+
+  --section-height: 100vh;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); overflow: hidden; height: 100%; }
+
+/* ── Background fixe ── */
+.bg {
+  position: fixed; inset: 0;
+  background: linear-gradient(160deg,
+    var(--color-bg-from) 0%,
+    #f2f8fd 35%,
+    #eaf4fb 65%,
+    var(--color-bg-to) 100%);
+  z-index: 0;
+}
+
+.bubbles-layer {
+  position: fixed; inset: 0;
+  z-index: 1; pointer-events: none; overflow: hidden;
+}
+
+.bubble { position: absolute; border-radius: 50%; }
+
+/* ── Scroller principal ── */
+.scroller {
+  position: fixed; inset: 0;
+  z-index: 10;
+  overflow-y: scroll;
+  
+}
+
+/* ── Sections ── */
+.section {
+  height: var(--section-height);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  position: relative;
+}
+
+.section--footer { height: auto; min-height: 40vh; }
+
+/* ── Placeholder WIP ── */
+.wip-badge {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  letter-spacing: 0.06em;
+  border: 1.5px dashed var(--color-accent);
+  padding: 14px 28px;
+  border-radius: 999px;
+  opacity: 0.5;
+}
+
+/* ── Navigation latérale ── */
+.side-nav {
+  position: fixed;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.nav-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  opacity: 0.3;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-dot::after {
+  content: attr(data-label);
+  position: absolute;
+  right: 18px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.nav-dot:hover { opacity: 0.7; transform: scale(1.3); }
+.nav-dot:hover::after { opacity: 1; }
+.nav-dot.active { opacity: 1; transform: scale(1.4); }
