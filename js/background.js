@@ -4,9 +4,9 @@ const PALETTE = [
 ];
 
 const DEPTH_GROUPS = [
-  { sizeRange:[350,520], speedRange:[0.18,0.30], opacityRange:[0.10,0.16], count:10 },
-  { sizeRange:[180,340], speedRange:[0.38,0.55], opacityRange:[0.13,0.20], count:12 },
-  { sizeRange:[ 60,160], speedRange:[0.70,1.10], opacityRange:[0.15,0.22], count:12 },
+  { sizeRange:[350,520], speedRange:[0.03,0.08], opacityRange:[0.10,0.16], count:16 },
+  { sizeRange:[180,340], speedRange:[0.10,0.18], opacityRange:[0.13,0.20], count:18 },
+  { sizeRange:[ 60,160], speedRange:[0.25,0.40], opacityRange:[0.15,0.22], count:16 },
 ];
 
 function rand(a,b){ return a+Math.random()*(b-a); }
@@ -20,7 +20,6 @@ const bubbles = DEPTH_GROUPS.flatMap(({sizeRange,speedRange,opacityRange,count})
     const size    = rand(...sizeRange);
     const speed   = rand(...speedRange);
     const opacity = rand(...opacityRange);
-    const blur    = Math.round(size*0.14);
     const [r,g,b] = PALETTE[randInt(0,PALETTE.length)];
     const el = document.createElement('div');
     el.className = 'bubble';
@@ -29,7 +28,7 @@ const bubbles = DEPTH_GROUPS.flatMap(({sizeRange,speedRange,opacityRange,count})
       left:${rand(-8,90)}%;
       top:${rand(-5,600)}%;
       background:radial-gradient(circle at 38% 38%, rgba(${r},${g},${b},${opacity.toFixed(2)}), transparent 68%);
-      filter:blur(${blur}px);
+      will-change:transform;
     `;
     layer.appendChild(el);
     return {el, speed};
@@ -51,7 +50,9 @@ function updateNav(){
 scroller.addEventListener('scroll', updateNav, {passive:true});
 
 (function animate(){
-  currentY += (targetY-currentY)*0.10;
-  bubbles.forEach(({el,speed})=>{ el.style.transform=`translateY(${-currentY*speed}px)`; });
+  if (currentY !== targetY) {
+    currentY = targetY;
+    bubbles.forEach(({el,speed})=>{ el.style.transform=`translateY(${-currentY*speed}px)`; });
+  }
   requestAnimationFrame(animate);
 })();
