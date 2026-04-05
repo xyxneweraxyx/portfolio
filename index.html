@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Arnoux Ilan — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/hero.css">
   <link rel="stylesheet" href="css/timeline.css">
@@ -156,10 +156,90 @@
 
         <!-- ── TIMELINE ── -->
     <section id="timeline" class="section">
-      <div class="wip-badge">🚧 Timeline — to be built</div>
+      <div class="timeline-inner" id="timelineInner">
+
+        <!-- ── Titre de section ── -->
+        <div style="text-align:center; padding: 0 6vw 40px 6vw; width:100%;">
+          <p style="font-size:0.75rem; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:var(--color-accent); margin-bottom:12px;">Portfolio</p>
+          <h2 style="font-family:var(--font-display); font-size:clamp(2.2rem, 4vw, 3.4rem); color:var(--color-text); letter-spacing:-0.02em;">My Life as a Developer</h2>
+        </div>
+
+        <!-- ── Catégorie 1 ── -->
+        <div class="tl-category">
+          <div class="tl-category-line"></div>
+          <span class="tl-category-label">✦ Early Days</span>
+          <div class="tl-category-line"></div>
+        </div>
+
+        <!-- Node 1 — gauche -->
+        <div class="tl-node left" id="node-0"
+             data-title="Scratch Projects"
+             data-date="2015 – 2019"
+             data-desc="Long description placeholder for node 1. Where it all started — raycasters and level editors built from scratch, literally."
+             data-skills="Scratch,Logic,Game Design"
+             data-links="">
+          <div class="tl-thumb" onclick="openTlModal(0)">
+            <span class="tl-thumb-placeholder">Placeholder</span>
+          </div>
+          <div class="tl-text">
+            <span class="tl-date">2015 – 2019</span>
+            <h3 class="tl-title">Scratch Projects</h3>
+            <p class="tl-desc">Where it all started — raycasters, level editors, and the first spark of curiosity.</p>
+          </div>
+        </div>
+
+        <!-- Node 2 — droite -->
+        <div class="tl-node right" id="node-1"
+             data-title="NSI — First Real Language"
+             data-date="2022 – 2023"
+             data-desc="Long description placeholder for node 2. Discovering Python in class and realising in a day that programming came naturally."
+             data-skills="Python,Algorithms,Logic"
+             data-links="">
+          <div class="tl-thumb" onclick="openTlModal(1)">
+            <span class="tl-thumb-placeholder">Placeholder</span>
+          </div>
+          <div class="tl-text">
+            <span class="tl-date">2022 – 2023</span>
+            <h3 class="tl-title">NSI — First Real Language</h3>
+            <p class="tl-desc">Discovering Python in class. Realising in a day that programming came naturally.</p>
+          </div>
+        </div>
+
+        <!-- SVG courbes -->
+        <svg class="timeline-svg" id="timelineSvg"></svg>
+
+      </div>
+
+      <!-- Modale timeline -->
+      <div class="tl-modal-overlay" id="tlModalOverlay">
+        <div class="tl-modal" id="tlModal">
+          <button class="tl-modal-close" id="tlModalClose">✕</button>
+
+          <div class="tl-modal-video-wrap">
+            <div class="tl-modal-video" id="tlModalVideo">
+              <span class="tl-modal-video-placeholder">Video placeholder</span>
+            </div>
+          </div>
+
+          <div class="tl-modal-desc">
+            <span class="tl-modal-date" id="tlModalDate"></span>
+            <h2 class="tl-modal-title" id="tlModalTitle"></h2>
+            <p class="tl-modal-text" id="tlModalText"></p>
+          </div>
+
+          <div class="tl-modal-links" id="tlModalLinks"></div>
+
+          <div class="tl-modal-skills">
+            <span class="tl-modal-skills-label">Skills & Tools</span>
+            <div class="tl-modal-tags" id="tlModalTags"></div>
+          </div>
+
+        </div>
+      </div>
+
     </section>
 
-    <!-- ── FOOTER ── -->
+        <!-- ── FOOTER ── -->
     <section id="footer" class="section section--footer">
       <div class="footer-inner">
 

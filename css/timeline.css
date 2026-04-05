@@ -1,1 +1,292 @@
-/* timeline.css — à construire */
+/* ══════════════════════════════════════════
+   timeline.css — Section Timeline
+   ══════════════════════════════════════════ */
+
+#timeline {
+  height: auto;
+  min-height: 100vh;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 80px 0 140px 0;
+  overflow: visible;
+}
+
+.timeline-inner {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── SVG courbes (derrière tout) ── */
+.timeline-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 0;
+}
+
+.timeline-curve {
+  fill: none;
+  stroke: rgba(106,179,216,0.35);
+  stroke-width: 2.5;
+  stroke-dasharray: 6 5;
+}
+
+/* ══════════════════════════════════════════
+   Titres de catégorie
+   ══════════════════════════════════════════ */
+.tl-category {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 60px 6vw 20px 6vw;
+  pointer-events: none;
+}
+
+.tl-category-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(106,179,216,0.3), transparent);
+}
+
+.tl-category-label {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(1.9rem, 3vw, 2.8rem);
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  opacity: 0.7;
+}
+
+/* ══════════════════════════════════════════
+   Nodes
+   ══════════════════════════════════════════ */
+.tl-node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 75px 6vw;
+  z-index: 1;
+  gap: 0;
+}
+
+.tl-node.left  { flex-direction: row; }
+.tl-node.right { flex-direction: row-reverse; }
+.tl-node.right .tl-text { align-items: flex-end; text-align: right; }
+.tl-node.right .tl-desc { margin-left: auto; }
+
+/* ── Thumbnail ── */
+.tl-thumb {
+  flex-shrink: 0;
+  width: clamp(280px, 34vw, 480px);
+  aspect-ratio: 16/10;
+  border-radius: 18px;
+  background: rgba(106,179,216,0.10);
+  border: 1.5px solid rgba(106,179,216,0.25);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.tl-thumb:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(106,179,216,0.2);
+}
+
+.tl-thumb img,
+.tl-thumb video { width: 100%; height: 100%; object-fit: cover; }
+
+.tl-thumb-placeholder {
+  font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--color-accent); opacity: 0.5;
+}
+
+.tl-thumb::after {
+  content: '▶';
+  position: absolute;
+  font-size: 2.2rem; color: white;
+  opacity: 0; transition: opacity 0.2s ease;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.3);
+}
+.tl-thumb:hover::after { opacity: 1; }
+
+/* ── Texte (toujours collé à la thumbnail) ── */
+.tl-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 4vw;
+  align-self: center;
+}
+
+.tl-date {
+  font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.tl-title {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.05;
+}
+
+.tl-desc {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  color: var(--color-muted);
+  line-height: 1.45;
+  max-width: 400px;
+}
+
+/* ══════════════════════════════════════════
+   Modale Timeline
+   ══════════════════════════════════════════ */
+
+.tl-modal-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(10,20,35,0.7);
+  backdrop-filter: blur(10px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.tl-modal-overlay.open { opacity: 1; pointer-events: all; }
+
+/* Grid : 2 cols, 2 rows — video+links gauche, desc+skills droite */
+.tl-modal {
+  background: #fff;
+  border-radius: 24px;
+  width: 96vw; max-width: 1200px;
+  max-height: 92vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: 1fr auto;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.25);
+  transform: translateY(28px) scale(0.97);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+.tl-modal-overlay.open .tl-modal { transform: translateY(0) scale(1); }
+
+/* Fermer */
+.tl-modal-close {
+  position: absolute; top: 14px; right: 14px;
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1.5px solid #e0e0e0; background: #fff;
+  color: #888; font-size: 1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, color 0.2s; z-index: 10;
+}
+.tl-modal-close:hover { background: #f0f0f0; color: #333; }
+
+/* Vidéo — haut gauche */
+.tl-modal-video-wrap {
+  grid-column: 1; grid-row: 1;
+  padding: 28px 20px 16px 28px;
+  display: flex; flex-direction: column; gap: 0;
+  background: #f8fbfe;
+}
+
+.tl-modal-video {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 14px;
+  background: #0a1423;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.tl-modal-video iframe,
+.tl-modal-video video { width: 100%; height: 100%; border: none; }
+.tl-modal-video-placeholder {
+  color: rgba(106,179,216,0.5);
+  font-size: 0.78rem; letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Liens — bas gauche */
+.tl-modal-links {
+  grid-column: 1; grid-row: 2;
+  padding: 14px 20px 24px 28px;
+  display: flex; gap: 18px; align-items: center;
+  background: #f8fbfe;
+}
+
+.tl-modal-link {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.8rem; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--color-accent); text-decoration: none;
+  transition: color 0.2s;
+}
+.tl-modal-link:hover { color: var(--color-text); }
+.tl-modal-no-links {
+  font-size: 0.75rem; color: #ccc;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  font-style: italic;
+}
+
+/* Description — haut droite */
+.tl-modal-desc {
+  grid-column: 2; grid-row: 1;
+  padding: 32px 28px 16px 24px;
+  display: flex; flex-direction: column; gap: 10px;
+  overflow-y: auto;
+  border-left: 1px solid #f0f0f0;
+}
+.tl-modal-date {
+  font-size: 0.7rem; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--color-accent);
+}
+.tl-modal-title {
+  font-family: 'Caveat', cursive;
+  font-size: 2.1rem; font-weight: 700;
+  color: var(--color-text); line-height: 1.1;
+}
+.tl-modal-text {
+  font-size: 0.88rem; color: var(--color-muted);
+  line-height: 1.75; margin-top: 4px;
+}
+
+/* Skills — bas droite */
+.tl-modal-skills {
+  grid-column: 2; grid-row: 2;
+  padding: 16px 28px 24px 24px;
+  border-left: 1px solid #f0f0f0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.tl-modal-skills-label {
+  font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--color-muted); opacity: 0.6;
+}
+.tl-modal-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.tl-modal-tag {
+  padding: 5px 13px;
+  background: rgba(106,179,216,0.09);
+  border: 1px solid rgba(106,179,216,0.22);
+  border-radius: 999px;
+  font-size: 0.75rem; font-weight: 500;
+  color: var(--color-accent); letter-spacing: 0.04em;
+}
