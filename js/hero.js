@@ -28,9 +28,8 @@ document.addEventListener('keydown', (e) => {
 // ── Bouton Contact → scroll footer ──────────────────────────────────────────
 
 const btnContact = document.getElementById('btnContact');
-const scroller   = document.getElementById('scroller');
 const footer     = document.getElementById('footer');
 
 btnContact.addEventListener('click', () => {
-  scroller.scrollTo({ top: footer.offsetTop, behavior: 'smooth' });
+  document.getElementById('scroller').scrollTo({ top: footer.offsetTop, behavior: 'smooth' });
 });
