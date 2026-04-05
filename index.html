@@ -6,10 +6,7 @@
   <title>Arnoux Ilan — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-  <!-- Styles globaux -->
   <link rel="stylesheet" href="css/base.css">
-  <!-- Styles par section -->
   <link rel="stylesheet" href="css/hero.css">
   <link rel="stylesheet" href="css/timeline.css">
   <link rel="stylesheet" href="css/skills.css">
@@ -17,11 +14,9 @@
 </head>
 <body>
 
-  <!-- ── Arrière-plan fixe ────────────────────────────── -->
   <div class="bg"></div>
   <div class="bubbles-layer" id="bubblesLayer"></div>
 
-  <!-- ── Navigation latérale fixe ────────────────────── -->
   <nav class="side-nav">
     <a href="#hero"     class="nav-dot active" data-label="Home"></a>
     <a href="#timeline" class="nav-dot"        data-label="Journey"></a>
@@ -29,32 +24,23 @@
     <a href="#footer"   class="nav-dot"        data-label="Contact"></a>
   </nav>
 
-  <!-- ── Scroller principal ───────────────────────────── -->
   <div class="scroller" id="scroller">
 
-    <!-- HERO -->
+    <!-- ── HERO ── -->
     <section id="hero" class="section">
-
       <div class="hero-inner">
 
-        <!-- Colonne gauche -->
         <div class="hero-left">
           <p class="hero-eyebrow">EPITECH Marseille · 2025 – 2030</p>
-
-          <h1 class="hero-name">
-            Arnoux<span>Ilan</span>
-          </h1>
-
+          <h1 class="hero-name">Arnoux<span>Ilan</span></h1>
           <p class="hero-tagline">
             Driven by curiosity, built on code.<br>
             First-year CS student with a lifelong passion for creating things that work.
           </p>
-
           <div class="hero-ctas">
-            <button class="btn-primary" id="btnCv">Curriculum Vitae</button>
+            <button class="btn-primary"   id="btnCv">Curriculum Vitae</button>
             <button class="btn-secondary" id="btnContact">Contact</button>
           </div>
-
           <div class="hero-socials">
             <a href="https://github.com/xyxneweraxyx" target="_blank" class="social-link">
               <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -72,7 +58,6 @@
           </div>
         </div>
 
-        <!-- Colonne droite -->
         <div class="hero-right">
           <div class="hero-stat">
             <span class="hero-stat-number">1+</span>
@@ -88,7 +73,6 @@
             <span class="hero-stat-number">4</span>
             <span class="hero-stat-label">Languages mastered</span>
           </div>
-
           <div class="hero-ai-badge">
             <strong>Built with AI.</strong> This portfolio was entirely directed by me
             and coded with AI assistance — a skill in itself.
@@ -96,13 +80,10 @@
         </div>
 
       </div>
-
-      <!-- Scroll indicator -->
       <div class="hero-scroll">
         <div class="hero-scroll-line"></div>
         <span>Scroll</span>
       </div>
-
     </section>
 
     <!-- Modale CV -->
@@ -112,7 +93,6 @@
           <span class="cv-modal-title">Curriculum Vitae</span>
           <button class="cv-modal-close" id="cvModalClose">✕</button>
         </div>
-        <!-- Remplace src par le chemin vers ton image CV -->
         <img src="assets/cv.png" alt="CV Arnoux Ilan">
         <div class="cv-modal-actions">
           <a href="assets/cv.pdf" download class="btn-primary">Download PDF</a>
@@ -120,27 +100,23 @@
       </div>
     </div>
 
-    <!-- TIMELINE -->
+    <!-- ── TIMELINE ── -->
     <section id="timeline" class="section">
-      <!-- timeline.js + timeline.css -->
       <div class="wip-badge">🚧 Timeline — to be built</div>
     </section>
 
-    <!-- SKILLS -->
+    <!-- ── SKILLS ── -->
     <section id="skills" class="section">
-      <!-- skills.js + skills.css -->
       <div class="wip-badge">🚧 Skills — to be built</div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- ── FOOTER ── -->
     <section id="footer" class="section section--footer">
-      <!-- footer.css -->
       <div class="wip-badge">🚧 Footer — to be built</div>
     </section>
 
-  </div><!-- /scroller -->
+  </div>
 
-  <!-- ── Scripts ──────────────────────────────────────── -->
   <script src="js/background.js"></script>
   <script src="js/hero.js"></script>
   <script src="js/timeline.js"></script>

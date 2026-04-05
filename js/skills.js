@@ -1,4 +1,1 @@
-/**
- * skills.js — Section Skills
- * À construire
- */
+/* skills.js — à construire */

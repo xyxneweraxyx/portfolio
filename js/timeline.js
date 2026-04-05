@@ -1,4 +1,1 @@
-/**
- * timeline.js — Section Timeline
- * À construire
- */
+/* timeline.js — à construire */
