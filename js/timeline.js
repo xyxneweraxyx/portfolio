@@ -19,12 +19,14 @@ function drawCurves() {
   const scrollTop = scrollEl.scrollTop;
 
   for (let i = 0; i < nodes.length - 1; i++) {
+    // Skip curve if nodes belong to different eras
+    if (nodes[i].dataset.era !== nodes[i + 1].dataset.era) continue;
+
     const thumbA = nodes[i].querySelector('.tl-thumb');
     const thumbB = nodes[i + 1].querySelector('.tl-thumb');
     const rA = thumbA.getBoundingClientRect();
     const rB = thumbB.getBoundingClientRect();
 
-    // Centre bas de A, centre haut de B — en coordonnées relatives à inner
     const x1 = rA.left + rA.width  / 2 - innerRect.left;
     const y1 = rA.bottom + scrollTop   - (innerRect.top + scrollTop);
     const x2 = rB.left + rB.width  / 2 - innerRect.left;
@@ -55,7 +57,7 @@ function openTlModal(index) {
   const title  = node.dataset.title;
   const date   = node.dataset.date;
   const desc   = node.dataset.desc;
-  const skills = node.dataset.skills.split(',').filter(Boolean);
+  const skills = node.dataset.skills.split('|').filter(Boolean);
   const links  = node.dataset.links ? node.dataset.links.split('|').filter(Boolean) : [];
 
   document.getElementById('tlModalTitle').textContent = title;

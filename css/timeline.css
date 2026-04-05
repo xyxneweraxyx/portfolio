@@ -75,15 +75,21 @@
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 75px 6vw;
+  padding: 100px 6vw;
   z-index: 1;
   gap: 0;
 }
 
-.tl-node.left  { flex-direction: row; }
-.tl-node.right { flex-direction: row-reverse; }
-.tl-node.right .tl-text { align-items: flex-end; text-align: right; }
-.tl-node.right .tl-desc { margin-left: auto; }
+/* Positions */
+.tl-node.pos-left        { flex-direction: row; justify-content: flex-start; }
+.tl-node.pos-center-left { flex-direction: row; justify-content: flex-start; padding-left: 14vw; }
+.tl-node.pos-right        { flex-direction: row-reverse; justify-content: flex-start; }
+.tl-node.pos-center-right { flex-direction: row-reverse; justify-content: flex-start; padding-right: 14vw; }
+
+.tl-node.pos-right .tl-text,
+.tl-node.pos-center-right .tl-text { align-items: flex-end; text-align: right; }
+.tl-node.pos-right .tl-desc,
+.tl-node.pos-center-right .tl-desc { margin-left: auto; }
 
 /* ── Thumbnail ── */
 .tl-thumb {
@@ -133,12 +139,6 @@
   gap: 12px;
   padding: 0 4vw;
   align-self: center;
-}
-
-.tl-date {
-  font-size: 0.72rem; font-weight: 500;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--color-accent);
 }
 
 .tl-title {
@@ -289,4 +289,19 @@
   border-radius: 999px;
   font-size: 0.75rem; font-weight: 500;
   color: var(--color-accent); letter-spacing: 0.04em;
+}
+
+/* ── Node "?" ── */
+.tl-thumb-question {
+  background: transparent;
+  border: 2.5px dashed rgba(106,179,216,0.4);
+  cursor: pointer;
+}
+
+.tl-question-mark {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(4rem, 8vw, 7rem);
+  font-weight: 700;
+  color: rgba(106,179,216,0.5);
+  line-height: 1;
 }
