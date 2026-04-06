@@ -179,3 +179,65 @@
 
 
 .cv-modal-actions { display: flex; justify-content: flex-end; }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE Hero
+   ══════════════════════════════════════════ */
+
+/* Tablet (< 1024px) */
+@media (max-width: 1024px) {
+  #hero { padding: 0 5vw; }
+
+  .hero-name { font-size: clamp(3rem, 7vw, 5.5rem); }
+
+  .hero-stat-number { font-size: clamp(2rem, 4vw, 3rem); }
+
+  .hero-ai-badge { max-width: 220px; font-size: 0.7rem; }
+}
+
+/* Mobile portrait (< 640px) */
+@media (max-width: 640px) {
+  #hero {
+    padding: 70px 6vw 40px 6vw;
+    align-items: flex-start;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 40px;
+  }
+
+  .hero-name { font-size: clamp(3rem, 12vw, 4.5rem); }
+
+  .hero-tagline { font-size: 1rem; max-width: 100%; }
+
+  .hero-ctas { flex-wrap: wrap; }
+
+  .hero-right {
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-left: none;
+    border-top: 1px solid rgba(106,179,216,0.2);
+    padding-left: 0;
+    padding-top: 24px;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .hero-stat-divider { display: none; }
+
+  .hero-ai-badge {
+    max-width: 100%;
+    margin-top: 0;
+  }
+
+  .hero-scroll { display: none; }
+
+  /* Modale CV sur mobile */
+  .cv-modal {
+    padding: 20px;
+    max-height: 90vh;
+    grid-template-columns: 1fr;
+  }
+}

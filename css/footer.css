@@ -82,3 +82,21 @@
   opacity: 0.5;
   letter-spacing: 0.08em;
 }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE Footer
+   ══════════════════════════════════════════ */
+
+@media (max-width: 640px) {
+  #footer { padding: 48px 5vw; }
+
+  .footer-tagline { font-size: clamp(1.3rem, 6vw, 2rem); }
+
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .footer-divider { display: none; }
+}

@@ -88,3 +88,31 @@ body { font-family: var(--font-body); overflow: hidden; height: 100%; }
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — Mobile & Tablet
+   ══════════════════════════════════════════ */
+
+/* ── Fix background iOS scroll bug ── */
+@supports (-webkit-touch-callout: none) {
+  .bg, .bubbles-layer {
+    position: fixed;
+    height: 100vh;
+    height: -webkit-fill-available;
+  }
+  .scroller {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ── Tablet landscape (< 1024px) ── */
+@media (max-width: 1024px) {
+  .side-nav { right: 16px; gap: 12px; }
+  .nav-dot  { width: 8px; height: 8px; }
+  .nav-dot::after { display: none; }
+}
+
+/* ── Mobile (< 768px) ── */
+@media (max-width: 768px) {
+  .side-nav { right: 12px; gap: 10px; }
+}
