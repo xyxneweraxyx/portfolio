@@ -140,8 +140,7 @@
 /* ── Modale CV ── */
 .cv-modal-overlay {
   position: fixed; inset: 0; z-index: 1000;
-  background: rgba(10,20,35,0.6); backdrop-filter: blur(6px);
-  display: flex; align-items: center; justify-content: center;
+  background: rgba(10,20,35,0.6);   display: flex; align-items: center; justify-content: center;
   opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
 }
 .cv-modal-overlay.open { opacity: 1; pointer-events: all; }

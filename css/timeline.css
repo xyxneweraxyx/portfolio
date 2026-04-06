@@ -164,8 +164,7 @@
 .tl-modal-overlay {
   position: fixed; inset: 0; z-index: 1000;
   background: rgba(10,20,35,0.7);
-  backdrop-filter: blur(10px);
-  display: flex; align-items: center; justify-content: center;
+    display: flex; align-items: center; justify-content: center;
   opacity: 0; pointer-events: none;
   transition: opacity 0.3s ease;
 }
