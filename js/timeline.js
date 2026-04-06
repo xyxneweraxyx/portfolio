@@ -1,7 +1,7 @@
 /**
  * timeline.js
  * - Courbes de Bézier entre nodes (passe derrière les titres de catégorie)
- * - Modale dynamique
+ * - Modale dynamique avec embed vidéo YouTube (autoplay son)
  */
 
 // ── Courbes ──────────────────────────────────────────────────────────────────
@@ -59,6 +59,7 @@ function openTlModal(index) {
   const desc   = node.dataset.desc;
   const skills = node.dataset.skills.split('|').filter(Boolean);
   const links  = node.dataset.links ? node.dataset.links.split('|').filter(Boolean) : [];
+  const videoId = node.dataset.video || null;
 
   document.getElementById('tlModalTitle').textContent = title;
   document.getElementById('tlModalDate').textContent  = date;
@@ -85,9 +86,31 @@ function openTlModal(index) {
     linksEl.innerHTML = '<span class="tl-modal-no-links">No links available</span>';
   }
 
+  // Vidéo
+  const videoEl = document.getElementById('tlModalVideo');
+  if (videoId) {
+    videoEl.innerHTML = `
+      <iframe
+        src="https://www.youtube.com/embed/${videoId}?rel=0&playsinline=1"
+        frameborder="0"
+        allow="autoplay; encrypted-media; fullscreen"
+        allowfullscreen
+        style="width:100%; height:100%; border:none;"
+      ></iframe>`;
+  } else {
+    videoEl.innerHTML = '<span class="tl-modal-video-placeholder">Video placeholder</span>';
+  }
+
   tlOverlay.classList.add('open');
 }
 
-tlClose.addEventListener('click',  () => tlOverlay.classList.remove('open'));
-tlOverlay.addEventListener('click', (e) => { if (e.target === tlOverlay) tlOverlay.classList.remove('open'); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') tlOverlay.classList.remove('open'); });
+function closeTlModal() {
+  tlOverlay.classList.remove('open');
+  // Stop the video by clearing the iframe src
+  const videoEl = document.getElementById('tlModalVideo');
+  videoEl.innerHTML = '';
+}
+
+tlClose.addEventListener('click',  closeTlModal);
+tlOverlay.addEventListener('click', (e) => { if (e.target === tlOverlay) closeTlModal(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeTlModal(); });
