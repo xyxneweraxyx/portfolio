@@ -41,11 +41,31 @@ scroller.addEventListener('scroll', ()=>{ targetY=scroller.scrollTop; }, {passiv
 const sections = document.querySelectorAll('.section');
 const navDots  = document.querySelectorAll('.nav-dot');
 
+// Smooth scroll on nav dot click
+navDots.forEach(dot => {
+  dot.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(dot.getAttribute('href'));
+    if (target) scroller.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
+  });
+});
+
 function updateNav(){
-  const scrollY=scroller.scrollTop, winH=window.innerHeight;
-  let activeIdx=0;
-  sections.forEach((sec,i)=>{ if(sec.offsetTop <= scrollY+winH/2) activeIdx=i; });
-  navDots.forEach((dot,i)=>{ dot.classList.toggle('active', i===activeIdx); });
+  const scrollY = scroller.scrollTop;
+  const winH    = window.innerHeight;
+  const maxScroll = scroller.scrollHeight - winH;
+  let activeIdx = 0;
+
+  // Activate footer dot when near the bottom
+  if (scrollY >= maxScroll - 80) {
+    activeIdx = navDots.length - 1;
+  } else {
+    sections.forEach((sec, i) => {
+      if (sec.offsetTop <= scrollY + winH / 2) activeIdx = i;
+    });
+  }
+
+  navDots.forEach((dot, i) => { dot.classList.toggle('active', i === activeIdx); });
 }
 scroller.addEventListener('scroll', updateNav, {passive:true});
 
