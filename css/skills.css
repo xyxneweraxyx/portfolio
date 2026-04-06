@@ -78,6 +78,13 @@
   .skill-card img, .skill-card svg { width: 44px; height: 44px; }
 }
 
+/* Mobile landscape — prevent overlap with header */
+@media (max-height: 500px) and (orientation: landscape) {
+  #skills { padding-top: 80px; }
+  .skills-inner { gap: 24px; }
+  .skill-card { padding: 16px 10px; }
+}
+
 /* Mobile portrait */
 @media (max-width: 640px) {
   #skills { padding: 0 5vw; }

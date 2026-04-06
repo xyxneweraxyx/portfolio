@@ -148,7 +148,7 @@
 .cv-modal {
   background: #fff; border-radius: 20px; padding: 28px;
   max-width: 560px; width: 90vw;
-  height: 82vh; overflow: hidden;
+  max-height: 82vh; overflow-y: auto;
   box-shadow: 0 32px 80px rgba(0,0,0,0.18);
   display: flex; flex-direction: column; gap: 16px;
   transform: translateY(20px) scale(0.97);

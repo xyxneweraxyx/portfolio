@@ -368,6 +368,20 @@
   /* Cache le SVG des courbes sur mobile — trop complexe */
   .timeline-svg { display: none; }
 
+  /* Ligne droite entre les nodes sur mobile */
+  .tl-node::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1.5px;
+    height: 60px;
+    background: linear-gradient(to bottom, rgba(106,179,216,0.4), transparent);
+  }
+  .tl-node:last-child::after { display: none; }
+
   /* Modale mobile — colonne unique */
   .tl-modal {
     width: 100vw;
@@ -377,6 +391,7 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto auto;
     align-self: flex-end;
+    overflow-y: auto;
   }
 
   .tl-modal-overlay {
