@@ -305,3 +305,10 @@
   color: rgba(106,179,216,0.5);
   line-height: 1;
 }
+
+/* Paragraphes dans la description longue de la modale */
+.tl-modal-text p {
+  margin-bottom: 10px;
+  line-height: 1.75;
+}
+.tl-modal-text p:last-child { margin-bottom: 0; }

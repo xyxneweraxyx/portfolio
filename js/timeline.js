@@ -62,7 +62,13 @@ function openTlModal(index) {
 
   document.getElementById('tlModalTitle').textContent = title;
   document.getElementById('tlModalDate').textContent  = date;
-  document.getElementById('tlModalText').textContent  = desc;
+  const textEl = document.getElementById('tlModalText');
+  textEl.innerHTML = desc
+    .split('\n')
+    .map(line => line.trim())
+    .filter(Boolean)
+    .map(line => `<p>${line}</p>`)
+    .join('');
 
   // Tags
   document.getElementById('tlModalTags').innerHTML =
